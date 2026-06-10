@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Carlos ❤️ Jeruza</title>
+
+<style>
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Arial;
+  text-align: center;
+  background: linear-gradient(#ffdde1, #ee9ca7);
+  color: white;
+}
+
+/* corações */
+.heart {
+  position: fixed;
+  top: -10px;
+  font-size: 20px;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}
+
+.container {
+  padding: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.box {
+  background: rgba(255,255,255,0.2);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.photos img {
+  width: 200px;
+  margin: 10px;
+  border-radius: 15px;
+}
+
+#contador {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+input {
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background: #d6336c;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* carta escondida */
+#carta {
+  display: none;
+  animation: fade 2s;
+}
+
+@keyframes fade {
+  from {opacity:0;}
+  to {opacity:1;}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Carlos ❤️ Jeruza</h1>
+
+<div class="box">
+<h2>Nossa História 💞</h2>
+<p>
+Desde 15 de janeiro de 2012 Deus escreveu a nossa história...<br><br>
+E no dia 13 de maio de 2017 selamos esse amor para sempre 💍<br><br>
+Cada segundo ao seu lado é um presente que eu jamais quero perder ❤️
+</p>
+</div>
+
+<div class="box">
+<h2>Estamos juntos há:</h2>
+<p id="contador"></p>
+</div>
+
+<div class="box">
+<h2>Fotos 📸</h2>
+<div class="photos">
+  foto1.jpeg
+  foto2.jpeg
+  foto3.jpeg
+</div>
+</div>
+
+<div class="box">
+<h2>Música 🎵</h2>
+<audio autoplay loop controls>
+  musica.mpeg
+</audio>
+</div>
+
+<!-- Área secreta -->
+<div class="box">
+<h2>🔒 Carta Surpresa</h2>
+<p>Digite a data que mudou nossas vidas:</p>
+
+<input type="password" id="senha" placeholder="ddmmaaaa">
+<br><br>
+<button onclick="verificar()">Abrir Carta 💌</button>
+
+<div id="carta">
+<h2>💌 Para o amor da minha vida</h2>
+<p>
+Meu amor...<br><br>
+
+Se você está lendo isso, é porque chegou até aqui...  
+assim como chegou até mim um dia ❤️<br><br>
+
+Desde 2012, minha vida nunca mais foi a mesma…  
+ela ficou melhor, mais leve, mais feliz… porque tem você nela.<br><br>
+
+E naquele 13/05/2017, eu tive certeza absoluta:  
+você é a pessoa com quem eu quero viver todos os meus dias 💍<br><br>
+
+Não importa quanto tempo passe…  
+eu escolheria você… de novo… e de novo… e de novo ❤️<br><br>
+
+Obrigado por existir…  
+Obrigado por me amar…<br><br>
+
+Eu te amo infinitamente 💖
+</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+// corações
+function criarCoracao() {
+  const c = document.createElement("div");
+  c.classList.add("heart");
+  c.innerHTML = "💖";
+  c.style.left = Math.random() * 100 + "vw";
+  c.style.animationDuration = (Math.random() * 3 + 2) + "s";
+  document.body.appendChild(c);
+
+  setTimeout(() => c.remove(), 5000);
+}
+setInterval(criarCoracao, 300);
+
+// contador
+const inicio = new Date("2012-01-15T00:00:00");
+
+function atualizar() {
+  const agora = new Date();
+  let diff = Math.floor((agora - inicio)/1000);
+
+  let anos = Math.floor(diff / (365*24*60*60));
+  diff %= (365*24*60*60);
+
+  let dias = Math.floor(diff / 86400);
+  diff %= 86400;
+
+  let horas = Math.floor(diff / 3600);
+  diff %= 3600;
+
+  let minutos = Math.floor(diff / 60);
+  let segundos = diff % 60;
+
+  document.getElementById("contador").innerText =
+    anos+" anos, "+dias+" dias, "+
+    horas+" horas, "+minutos+" minutos e "+
+    segundos+" segundos ❤️";
+}
+setInterval(atualizar, 1000);
+
+// senha
+function verificar() {
+  var senha = document.getElementById("senha").value;
+
+  if (senha === "13052017") {
+    document.getElementById("carta").style.display = "block";
+  } else {
+    alert("Senha incorreta ❤️");
+  }
+}
+</script>
+
+</body>
+</html>
