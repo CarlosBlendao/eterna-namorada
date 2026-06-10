@@ -2,23 +2,26 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Carlos ❤️ Jeruza</title>
 
 <style>
 body {
   margin: 0;
-  overflow-x: hidden;
-  font-family: Arial;
+  font-family: Arial, sans-serif;
   text-align: center;
   background: linear-gradient(#ffdde1, #ee9ca7);
   color: white;
+  max-width: 500px;
+  margin: auto;
+  overflow-x: hidden;
 }
 
-/* corações */
+/* Corações animados */
 .heart {
   position: fixed;
   top: -10px;
-  font-size: 20px;
+  font-size: 18px;
   animation: fall linear infinite;
 }
 
@@ -27,34 +30,52 @@ body {
 }
 
 .container {
-  padding: 20px;
-  position: relative;
-  z-index: 2;
+  padding: 15px;
 }
 
+/* Caixas */
 .box {
   background: rgba(255,255,255,0.2);
-  padding: 20px;
-  margin: 20px;
+  padding: 15px;
+  margin: 12px;
   border-radius: 20px;
+  backdrop-filter: blur(8px);
 }
 
+/* Fotos */
 .photos img {
-  width: 200px;
-  margin: 10px;
+  width: 90%;
+  max-width: 300px;
+  margin: 10px auto;
+  display: block;
   border-radius: 15px;
 }
 
-#contador {
-  font-size: 22px;
-  font-weight: bold;
+/* Textos */
+h1 {
+  font-size: 28px;
 }
 
+h2 {
+  font-size: 20px;
+}
+
+p {
+  font-size: 15px;
+}
+
+#contador {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Inputs */
 input {
   padding: 10px;
   border-radius: 10px;
   border: none;
   text-align: center;
+  width: 80%;
 }
 
 button {
@@ -66,18 +87,24 @@ button {
   cursor: pointer;
 }
 
-/* carta escondida */
+/* Carta escondida */
 #carta {
   display: none;
   animation: fade 2s;
 }
 
 @keyframes fade {
-  from {opacity:0;}
-  to {opacity:1;}
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Ajustes extras */
+@media (max-width: 600px) {
+  h1 { font-size: 26px; }
+  h2 { font-size: 18px; }
+  p { font-size: 14px; }
 }
 </style>
-
 </head>
 
 <body>
@@ -101,7 +128,7 @@ Cada segundo ao seu lado é um presente que eu jamais quero perder ❤️
 </div>
 
 <div class="box">
-<h2>Fotos 📸</h2>
+<h2>Nossos Momentos 📸</h2>
 <div class="photos">
   <img src="foto1.jpeg">
   <img src="foto2.jpeg">
@@ -110,13 +137,12 @@ Cada segundo ao seu lado é um presente que eu jamais quero perder ❤️
 </div>
 
 <div class="box">
-<h2>Música 🎵</h2>
+<h2>Nossa Música 🎵</h2>
 <audio autoplay loop controls>
   <source src="musica.mpeg" type="audio/mpeg">
 </audio>
 </div>
 
-<!-- Área secreta -->
 <div class="box">
 <h2>🔒 Carta Surpresa</h2>
 <p>Digite a data que mudou nossas vidas:</p>
@@ -130,20 +156,16 @@ Cada segundo ao seu lado é um presente que eu jamais quero perder ❤️
 <p>
 Meu amor...<br><br>
 
-Se você está lendo isso, é porque chegou até aqui...  
-assim como chegou até mim um dia ❤️<br><br>
+Se você chegou até aqui, é porque nossa história continua firme ❤️<br><br>
 
-Desde 2012, minha vida nunca mais foi a mesma…  
-ela ficou melhor, mais leve, mais feliz… porque tem você nela.<br><br>
+Desde 2012, minha vida se tornou muito mais bonita… porque tem você.<br><br>
 
-E naquele 13/05/2017, eu tive certeza absoluta:  
-você é a pessoa com quem eu quero viver todos os meus dias 💍<br><br>
+E naquele 13/05/2017… eu tive certeza absoluta:<br>
+era você… sempre foi você 💍<br><br>
 
-Não importa quanto tempo passe…  
-eu escolheria você… de novo… e de novo… e de novo ❤️<br><br>
+Mesmo depois de tantos anos, eu ainda escolheria você todos os dias.<br><br>
 
-Obrigado por existir…  
-Obrigado por me amar…<br><br>
+Você é meu lar, minha paz, meu amor.<br><br>
 
 Eu te amo infinitamente 💖
 </p>
@@ -154,7 +176,7 @@ Eu te amo infinitamente 💖
 </div>
 
 <script>
-// corações
+// Corações
 function criarCoracao() {
   const c = document.createElement("div");
   c.classList.add("heart");
@@ -167,7 +189,7 @@ function criarCoracao() {
 }
 setInterval(criarCoracao, 300);
 
-// contador
+// Contador
 const inicio = new Date("2012-01-15T00:00:00");
 
 function atualizar() {
@@ -187,13 +209,15 @@ function atualizar() {
   let segundos = diff % 60;
 
   document.getElementById("contador").innerText =
-    anos+" anos, "+dias+" dias, "+
-    horas+" horas, "+minutos+" minutos e "+
-    segundos+" segundos ❤️";
+    anos + " anos, " +
+    dias + " dias, " +
+    horas + "h " +
+    minutos + "m " +
+    segundos + "s ❤️";
 }
 setInterval(atualizar, 1000);
 
-// senha
+// Senha
 function verificar() {
   var senha = document.getElementById("senha").value;
 
