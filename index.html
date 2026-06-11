@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Carlos ❤️ Jeruza</title>
 
 <style>
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   text-align: center;
   background: linear-gradient(#ffdde1, #ee9ca7);
   color: white;
@@ -17,7 +18,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Corações animados */
+/* Corações */
 .heart {
   position: fixed;
   top: -10px;
@@ -29,17 +30,29 @@ body {
   to { transform: translateY(100vh); }
 }
 
+/* Fogos */
+.firework {
+  position: fixed;
+  font-size: 20px;
+  animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
 .container {
   padding: 15px;
 }
 
-/* Caixas */
 .box {
   background: rgba(255,255,255,0.2);
   padding: 15px;
   margin: 12px;
   border-radius: 20px;
-  backdrop-filter: blur(8px);
 }
 
 /* Fotos */
@@ -51,22 +64,12 @@ body {
   border-radius: 15px;
 }
 
-/* Textos */
-h1 {
-  font-size: 28px;
-}
-
-h2 {
-  font-size: 20px;
-}
-
-p {
-  font-size: 15px;
-}
+h1 { font-size: 28px; }
+h2 { font-size: 20px; }
+p { font-size: 15px; }
 
 #contador {
   font-weight: bold;
-  font-size: 18px;
 }
 
 /* Inputs */
@@ -74,7 +77,6 @@ input {
   padding: 10px;
   border-radius: 10px;
   border: none;
-  text-align: center;
   width: 80%;
 }
 
@@ -87,22 +89,9 @@ button {
   cursor: pointer;
 }
 
-/* Carta escondida */
+/* Carta */
 #carta {
   display: none;
-  animation: fade 2s;
-}
-
-@keyframes fade {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Ajustes extras */
-@media (max-width: 600px) {
-  h1 { font-size: 26px; }
-  h2 { font-size: 18px; }
-  p { font-size: 14px; }
 }
 </style>
 </head>
@@ -128,7 +117,7 @@ Cada segundo ao seu lado é um presente que eu jamais quero perder ❤️
 </div>
 
 <div class="box">
-<h2>Nossos Momentos 📸</h2>
+<h2>Fotos 📸</h2>
 <div class="photos">
   <img src="foto1.jpeg">
   <img src="foto2.jpeg">
@@ -137,38 +126,21 @@ Cada segundo ao seu lado é um presente que eu jamais quero perder ❤️
 </div>
 
 <div class="box">
-<h2>Nossa Música 🎵</h2>
+<h2>Música 🎵</h2>
 <audio autoplay loop controls>
   <source src="musica.mpeg" type="audio/mpeg">
 </audio>
 </div>
 
 <div class="box">
-<h2>🔒 Carta Surpresa</h2>
-<p>Digite a data que mudou nossas vidas:</p>
+<h2>🔒 Carta Secreta</h2>
 
-<input type="password" id="senha" placeholder="ddmmaaaa">
-<br><br>
-<button onclick="verificar()">Abrir Carta 💌</button>
+<input type="password" id="senha" placeholder="ddmmaaaa"><br><br>
+<button onclick="verificar()">Abrir 💌</button>
 
 <div id="carta">
 <h2>💌 Para o amor da minha vida</h2>
-<p>
-Meu amor...<br><br>
-
-Se você chegou até aqui, é porque nossa história continua firme ❤️<br><br>
-
-Desde 2012, minha vida se tornou muito mais bonita… porque tem você.<br><br>
-
-E naquele 13/05/2017… eu tive certeza absoluta:<br>
-era você… sempre foi você 💍<br><br>
-
-Mesmo depois de tantos anos, eu ainda escolheria você todos os dias.<br><br>
-
-Você é meu lar, minha paz, meu amor.<br><br>
-
-Eu te amo infinitamente 💖
-</p>
+<p id="textoCarta"></p>
 </div>
 
 </div>
@@ -176,7 +148,7 @@ Eu te amo infinitamente 💖
 </div>
 
 <script>
-// Corações
+// Corações caindo
 function criarCoracao() {
   const c = document.createElement("div");
   c.classList.add("heart");
@@ -209,20 +181,75 @@ function atualizar() {
   let segundos = diff % 60;
 
   document.getElementById("contador").innerText =
-    anos + " anos, " +
-    dias + " dias, " +
-    horas + "h " +
-    minutos + "m " +
-    segundos + "s ❤️";
+    anos+" anos, "+dias+" dias, "+
+    horas+"h "+minutos+"m "+segundos+"s ❤️";
 }
 setInterval(atualizar, 1000);
 
-// Senha
+// Fogos 🎆
+function soltarFogos() {
+  for (let i = 0; i < 25; i++) {
+    const f = document.createElement("div");
+    f.classList.add("firework");
+    f.innerHTML = ["💥","✨","🎆","💖"][Math.floor(Math.random()*4)];
+    f.style.left = Math.random() * 100 + "vw";
+    f.style.top = Math.random() * 100 + "vh";
+    document.body.appendChild(f);
+
+    setTimeout(() => f.remove(), 1000);
+  }
+}
+
+// Texto digitando 💌
+function escreverCarta(texto) {
+  let i = 0;
+  const speed = 40;
+  const destino = document.getElementById("textoCarta");
+  destino.innerHTML = "";
+
+  function digitar() {
+    if (i < texto.length) {
+      destino.innerHTML += texto.charAt(i);
+      i++;
+      setTimeout(digitar, speed);
+    }
+  }
+
+  digitar();
+}
+
+// Verificação de senha
 function verificar() {
-  var senha = document.getElementById("senha").value;
+  let senha = document.getElementById("senha").value;
 
   if (senha === "13052017") {
+
     document.getElementById("carta").style.display = "block";
+
+    soltarFogos();
+
+    const texto = `Meu amor...
+
+Se você chegou até aqui, é porque estamos juntos nessa história linda ❤️
+
+Desde 2012, tudo mudou na minha vida...
+porque você entrou nela.
+
+E naquele 13/05/2017...
+eu tive a certeza mais bonita de todas:
+é você que eu quero para sempre 💍
+
+Mesmo depois de tantos anos,
+eu ainda escolheria você todos os dias...
+
+Você é o meu lar,
+minha paz,
+minha felicidade...
+
+Eu te amo infinitamente 💖`;
+
+    escreverCarta(texto);
+
   } else {
     alert("Senha incorreta ❤️");
   }
